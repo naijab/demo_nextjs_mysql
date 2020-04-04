@@ -6,7 +6,7 @@ export async function getServerSideProps(context) {
   //Connect to Database
   const db = Knex({
     client: "mysql",
-    connection: serverRuntimeConfig.DB_CONNECTION_URL,
+    connection: process.env.DB_CONNECTION_URL,
   });
 
   //Query table
@@ -19,13 +19,13 @@ export async function getServerSideProps(context) {
   });
 
   // Send to Props
-  return { props: { postList } };
+  return { props: { postList, hello: process.env.HELLO } };
 }
 
-function HomePage({ postList }) {
+function HomePage({ postList, hello }) {
   return (
     <div>
-      <h1>Demo Post from MySQL {}</h1>
+      <h1>Demo Post from MySQL {hello}</h1>
       {postList &&
         postList.map((item) => {
           return <li key={item.id}>{item.title}</li>;

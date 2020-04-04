@@ -1,16 +1,23 @@
 {
-  "name": "demo_next_mongo",
+  "name": "demo_next_mysql",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "pm2:dev": "pm2 start ecosystem.config.js --env development",
+    "pm2:dev:reload-env": "pm2 reload ecosystem.config.js --env development --update-env",
+    "pm2:start": "pm2 start ecosystem.config.js --env production",
+    "pm2:start:reload-env": "pm2 reload ecosystem.config.js --env production --update-env",
+    "pm2:status": "pm2 status",
+    "pm2:stop": "pm2 kill"
   },
   "dependencies": {
     "knex": "^0.20.13",
     "mysql": "^2.18.1",
     "next": "9.3.4",
+    "pm2": "^4.2.3",
     "react": "16.13.1",
     "react-dom": "16.13.1"
   }
