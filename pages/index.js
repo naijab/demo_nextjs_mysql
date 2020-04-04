@@ -1,10 +1,12 @@
 import Knex from "knex";
+import getConfig from "next/config";
+const { serverRuntimeConfig } = getConfig();
 
 export async function getServerSideProps(context) {
   //Connect to Database
   const db = Knex({
     client: "mysql",
-    connection: process.env.DB_CONNECTION_URL,
+    connection: serverRuntimeConfig.DB_CONNECTION_URL,
   });
 
   //Query table
@@ -21,10 +23,9 @@ export async function getServerSideProps(context) {
 }
 
 function HomePage({ postList }) {
-  console.log(`Post List: ${postList}`);
   return (
     <div>
-      <h1>Demo Post from MySQL</h1>
+      <h1>Demo Post from MySQL {}</h1>
       {postList &&
         postList.map((item) => {
           return <li key={item.id}>{item.title}</li>;
