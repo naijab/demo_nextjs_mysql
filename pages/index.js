@@ -1,6 +1,6 @@
 import Knex from "knex";
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   //Connect to Database
   const db = Knex({
     client: "mysql",
